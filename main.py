@@ -1,10 +1,11 @@
 import streamlit as st
 
-# ऐप का टाइटल
 st.title("किसान साथी")
 
-# स्वागत संदेश बोलने के लिए JavaScript का उपयोग
-welcome_text = "नमस्ते! किसान साथी ऐप में आपका स्वागत है। मैं आपकी खेती से जुड़ी जानकारी में मदद कर सकता हूँ।"
+# स्वागत संदेश
+welcome_text = "नमस्ते! मैं आपका डिजिटल सहायक हूँ। मैं आपकी खेती से जुड़ी जानकारी में मदद कर सकता हूँ।"
+
+# ऑटो-प्ले के लिए स्क्रिप्ट
 js_code = f"""
 <script>
     var msg = new SpeechSynthesisUtterance("{welcome_text}");
@@ -12,8 +13,10 @@ js_code = f"""
     window.speechSynthesis.speak(msg);
 </script>
 """
-st.components.v1.html(js_code)
 
-# आपका बाकी का ऐप कोड यहाँ लिखें
-st.write("यहाँ अपनी खेती की जानकारी ढूँढें।")
+# HTML के ज़रिए आवाज़ चलाएं
+st.components.v1.html(js_code, height=0)
+
+st.write("अपनी खेती की जानकारी के लिए यहाँ पूछें।")
+
 
