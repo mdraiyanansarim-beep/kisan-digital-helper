@@ -1,22 +1,27 @@
 import streamlit as st
+from gtts import gTTS
 
-st.title("किसान साथी")
+st.set_page_config(page_title="किसान साथी AI", layout="centered")
+st.title("🌾 किसान साथी AI")
 
-# स्वागत संदेश
-welcome_text = "नमस्ते! मैं आपका डिजिटल सहायक हूँ। मैं आपकी खेती से जुड़ी जानकारी में मदद कर सकता हूँ।"
+query = st.text_input("अपनी समस्या यहाँ लिखें:")
 
-# बटन ताकि यूजर क्लिक करके आवाज़ सुन सके
-if st.button("आवाज़ सुनने के लिए यहाँ दबाएं"):
-    js_code = f"""
-    <script>
-        var msg = new SpeechSynthesisUtterance("{welcome_text}");
-        msg.lang = 'hi-IN';
-        window.speechSynthesis.speak(msg);
-    </script>
-    """
-    st.components.v1.html(js_code, height=0)
+if st.button("उत्तर खोजें"):
+    if query:
+        # यहाँ हम AI का जवाब सेट करेंगे
+        response_text = "फसल सुरक्षा के लिए आप नीम के अर्क का उपयोग कर सकते हैं। यह कीड़ों को दूर रखने का प्राकृतिक तरीका है।"
+        st.write(response_text)
 
-st.write("अपनी खेती की जानकारी के लिए यहाँ पूछें।")
+        # आवाज जनरेट करें
+        tts = gTTS(text=response_text, lang='hi')
+        tts.save("response.mp3")
+        
+        # ऑडियो प्ले करें
+        audio_file = open("response.mp3", "rb")
+        st.audio(audio_file.read(), format='audio/mp3')
+    else:
+        st.warning("कृपया अपनी समस्या लिखें।")
+
 
 
 
