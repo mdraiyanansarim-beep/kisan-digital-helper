@@ -6,7 +6,7 @@ from gtts import gTTS
 api_key = st.secrets["GOOGLE_API_KEY"]
 
 genai.configure(api_key=api_key)
-model = genai.GenerativeModel('gemini-1.5-pro ')
+model = genai.GenerativeModel('gemini-1.5-pro')
 
 st.set_page_config(page_title="किसान साथी AI", layout="centered")
 st.title("🌾 किसान साथी AI")
