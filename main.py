@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 from gtts import gTTS
 
-# API Key को Streamlit के Secrets से लें
+# API Key को Streamlit के Secrets से लोड करना
 api_key = st.secrets["GOOGLE_API_KEY"]
 
 genai.configure(api_key=api_key)
@@ -15,7 +15,7 @@ query = st.text_input("अपनी समस्या यहाँ लिखे
 
 if st.button("उत्तर खोजें"):
     if query:
-        # AI का जवाब
+        # AI जवाब जनरेट कर रहा है
         response = model.generate_content(f"आप एक कृषि विशेषज्ञ हैं। किसान के इस सवाल का जवाब दें: {query}")
         response_text = response.text
         st.write(response_text)
