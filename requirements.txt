@@ -1,4 +1,7 @@
 streamlit
 gTTS
+streamlit
+gTTS
+google-generativeai
 
 
